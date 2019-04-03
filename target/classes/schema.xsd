@@ -1,0 +1,47 @@
+<?xml version = "1.0"?>
+
+
+    <xs:schema xmlns:xs = "http://www.w3.org/2001/XMLSchema">
+
+
+    <xs:element name = 'colaboradores'>
+        <xs:complexType>
+            <xs:attribute name="id" type="xs:int">
+            <xs:sequence>
+                <xs:element name = 'colaborador' type = 'ColaboradorType' minOccurs = '0' 
+                maxOccurs = 'unbounded' />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:complexType name = "ColaboradorType">
+        <xs:sequence>
+            <xs:element name = "nome">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="3"/>
+                        <xs:maxLength value="50"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name = "cpf" type = "xs:string">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\\d{11}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name = "cargo" type = "xs:string">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="gerente"/>
+                        <xs:enumeration value="analista"/>
+                        <xs:enumeration value="desenvolvedor"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name = "salario" type = "xs:decimal"/>
+            <xs:element name="nascimento" type = "xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
